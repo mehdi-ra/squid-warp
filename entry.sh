@@ -13,8 +13,17 @@ if [ -n "$USERNAME" ] && [ -n "$PASSWORD" ]; then
 fi
 
 # Initialize Cloudflare WARP
+
 echo "Initializing Cloudflare WARP..."
-warp-cli --accept-tos register
+
+# Check if WARP is already registered
+if ! warp-cli --accept-tos status | grep -q 'Registration'; then
+    echo "Registering WARP..."
+    warp-cli --accept-tos registration new
+else
+    echo "WARP already registered."
+fi
+
 warp-cli --accept-tos set-mode proxy
 warp-cli --accept-tos set-proxy-port 40000
 warp-cli --accept-tos connect
