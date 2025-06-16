@@ -7,7 +7,7 @@ LABEL version="0.0.1"
 RUN apt-get update -y --fix-missing \
     && apt-get install -y --no-install-recommends \
     ca-certificates \
-    gnupg curl lsb-release net-tools socat iproute2 iputils-ping python3
+    gnupg curl lsb-release net-tools socat iproute2 iputils-ping
 
 # Install Cloudflare WARP
 RUN curl -fsSL https://pkg.cloudflareclient.com/pubkey.gpg | gpg --yes --dearmor -o /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg \
