@@ -1,0 +1,16 @@
+version: '3'
+services:
+  proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: "0"
+    restart: always
+    volumes:
+      - ./squid.conf:/etc/squid/squid.conf:ro
+      - ./entry.sh:/entry.sh:ro
+    ports:
+      - "8082:3128"
+    environment:
+      - USERNAME=mehdi
+      - PASSWORD=hadi
